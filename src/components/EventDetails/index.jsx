@@ -51,7 +51,6 @@ const EventDetails = ({ event }) => {
       }
     });
   };
-  console.log(newTitle);
   const handleEditClick = () => {
     const newEvent = {
       title: newTitle,

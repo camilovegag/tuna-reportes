@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth } from "../firebase/config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
 import { authErrors } from "../firebase/authErrors";
 
@@ -12,8 +12,7 @@ export const useSignup = () => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((credential) => {
         dispatch({ type: "LOGIN", payload: credential.user });
-        credential.user.displayName = displayName;
-        console.log(credential.user);
+        updateProfile(auth.currentUser, { displayName });
       })
       .catch((err) => {
         setError(err.message);
