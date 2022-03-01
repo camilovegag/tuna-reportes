@@ -1,0 +1,23 @@
+.card {
+  background-color: #fff;
+  border: 3px solid #fff;
+  border-radius: 8px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  transition: 0.4s ease-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  border: 3px solid var(--primary-color);
+  transition: 0.4s ease-in-out;
+}
+
+.title,
+.subtitle {
+  font-weight: 500;
+  color: var(--heading-color);
+}

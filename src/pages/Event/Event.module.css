@@ -1,0 +1,27 @@
+.event {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.back {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 0.75rem;
+  width: 165px;
+}
+
+.back img {
+  width: 28px;
+  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%) contrast(84%);
+}
+
+.back p {
+  transition: 0.2s;
+}
+
+.back p:hover {
+  color: var(--primary-color);
+  transition: 0.2s;
+}

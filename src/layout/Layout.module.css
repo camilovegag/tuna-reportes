@@ -1,0 +1,11 @@
+.main {
+  margin: 0 auto;
+  padding: 3.5rem 0;
+  width: min(900px, 85%);
+}
+
+@media (min-width: 600px) {
+  .main {
+    padding: 5rem 0;
+  }
+}

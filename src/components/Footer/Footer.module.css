@@ -1,0 +1,6 @@
+.footer {
+  margin: 0 auto;
+  padding: 2rem 0;
+  width: min(900px, 85%);
+  text-align: center;
+}
