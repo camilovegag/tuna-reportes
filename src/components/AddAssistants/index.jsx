@@ -42,7 +42,7 @@ const AddAssistants = ({ id, existingMembers }) => {
             <p>Tuno</p>
             <input
               type="radio"
-              name="state"
+              name="range"
               value="Tuno"
               onChange={(range) => setRange(range.target.value)}
               required
@@ -50,14 +50,14 @@ const AddAssistants = ({ id, existingMembers }) => {
             <p>Bulto</p>
             <input
               type="radio"
-              name="state"
+              name="range"
               value="Bulto"
               onChange={(range) => setRange(range.target.value)}
             />
             <p>Aspirante</p>
             <input
               type="radio"
-              name="state"
+              name="range"
               value="Aspirante"
               onChange={(range) => setRange(range.target.value)}
             />
@@ -69,7 +69,7 @@ const AddAssistants = ({ id, existingMembers }) => {
               type="radio"
               name="state"
               value="Asiste"
-              onChange={(state) => setRange(state.target.value)}
+              onChange={(state) => setState(state.target.value)}
               required
             />
             <p>No Asiste</p>
