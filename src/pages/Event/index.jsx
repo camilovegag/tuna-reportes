@@ -22,7 +22,7 @@ const Event = () => {
       </div>
       {event ? <EventDetails event={event} /> : <CardSkeleton />}
       {event ? <AddAssistants existingMembers={event.members} id={id} /> : <CardSkeleton />}
-      {event ? <Assistants members={event.members} /> : <CardSkeleton />}
+      {event ? <Assistants members={event.members} id={id} /> : <CardSkeleton />}
       {event ? <AddSongs existingSongs={event.songs} id={id} /> : <CardSkeleton />}
       {event ? <Songs songs={event.songs} /> : <CardSkeleton />}
     </section>
