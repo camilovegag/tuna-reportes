@@ -21,6 +21,7 @@ const Create = () => {
       date: moment(date).format("LL, LT A"),
       time: date,
       members: [],
+      songs: [],
     })
       .then(() =>
         Swal.fire({
