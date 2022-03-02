@@ -14,7 +14,6 @@ const EventDetails = ({ event }) => {
   const navigate = useNavigate();
   const { title, location, date, id, time } = event;
   const [editMode, setEditMode] = useState(false);
-
   const [newTitle, setNewTitle] = useState(title);
   const [newLocation, setNewLocation] = useState(location);
   const [newDate, setNewDate] = useState(time);
@@ -22,8 +21,8 @@ const EventDetails = ({ event }) => {
   useEffect(() => {
     setNewTitle(title);
     setNewLocation(location);
-    setNewDate(date);
-  }, [title, location, date]);
+    setNewDate(time);
+  }, [title, location, time]);
 
   const docRef = doc(db, "events", id);
 
@@ -51,6 +50,7 @@ const EventDetails = ({ event }) => {
       }
     });
   };
+
   const handleEditClick = () => {
     const newEvent = {
       title: newTitle,

@@ -5,13 +5,14 @@ import styles from "./AddAssistants.module.css";
 import Swal from "sweetalert2";
 
 const AddAssistants = ({ id, existingMembers }) => {
+  const [range, setRange] = useState("");
   const [state, setState] = useState("");
   const [member, setMember] = useState("");
   const docRef = doc(db, "events", id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateDoc(docRef, { members: [...existingMembers, { member, state }] }).then(() =>
+    await updateDoc(docRef, { members: [...existingMembers, { member, state, range }] }).then(() =>
       Swal.fire({
         title: "Integrante añadido exitosamente",
         icon: "success",
@@ -36,6 +37,31 @@ const AddAssistants = ({ id, existingMembers }) => {
             checked
             required
           />
+          <label htmlFor="state">Rango</label>
+          <section className={styles.state}>
+            <p>Tuno</p>
+            <input
+              type="radio"
+              name="state"
+              value="Tuno"
+              onChange={(range) => setRange(range.target.value)}
+              required
+            />
+            <p>Bulto</p>
+            <input
+              type="radio"
+              name="state"
+              value="Bulto"
+              onChange={(range) => setRange(range.target.value)}
+            />
+            <p>Aspirante</p>
+            <input
+              type="radio"
+              name="state"
+              value="Aspirante"
+              onChange={(range) => setRange(range.target.value)}
+            />
+          </section>
           <label htmlFor="state">Estado</label>
           <section className={styles.state}>
             <p>Asiste</p>
@@ -43,7 +69,7 @@ const AddAssistants = ({ id, existingMembers }) => {
               type="radio"
               name="state"
               value="Asiste"
-              onChange={(state) => setState(state.target.value)}
+              onChange={(state) => setRange(state.target.value)}
               required
             />
             <p>No Asiste</p>
@@ -68,6 +94,7 @@ const AddAssistants = ({ id, existingMembers }) => {
               onChange={(state) => setState(state.target.value)}
             />
           </section>
+
           <button className="btn">Añadir integrante</button>
         </form>
       </article>

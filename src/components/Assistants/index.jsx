@@ -5,7 +5,7 @@ const Assistants = ({ members }) => (
     <h2 className="page-title">Lista de asistentes</h2>
     <article className={styles.card}>
       {members.map((member) => (
-        <div key={Math.random()} className={styles.assistant}>
+        <div key={member.member} className={styles.assistant}>
           <p>{member.member}</p>
           {"-"}
           <p>{member.state}</p>
