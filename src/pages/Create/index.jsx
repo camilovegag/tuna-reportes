@@ -18,7 +18,7 @@ const Create = () => {
     await addDoc(colRef, {
       title,
       location,
-      date: moment(date).format("LL, LT A"),
+      date: moment(date).format("dddd LL, LT A"),
       time: date,
       members: [],
       songs: [],

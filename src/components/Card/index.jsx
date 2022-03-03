@@ -12,7 +12,8 @@ const Card = ({ event }) => {
         <span className={styles.subtitle}>Ubicación:</span> {location}
       </p>
       <p>
-        <span className={styles.subtitle}>Fecha:</span> {date.slice(0, -10)}
+        <span className={styles.subtitle}>Fecha:</span>
+        {` ${date[0].toUpperCase() + date.substring(1).slice(0, -10)}.`}
       </p>
       <p>
         <span className={styles.subtitle}>Hora:</span> {date.substr(date.length - 8)}

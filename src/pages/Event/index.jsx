@@ -8,6 +8,7 @@ import CardSkeleton from "../../components/CardSkeleton";
 import Assistants from "../../components/Assistants";
 import AddSongs from "../../components/AddSongs";
 import Songs from "../../components/Songs";
+import CreateMessage from "../../components/CreateMessage";
 
 const Event = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Event = () => {
         <p className="page-title">Regresar</p>
       </div>
       {event ? <EventDetails event={event} /> : <CardSkeleton />}
+      {event ? <CreateMessage event={event} /> : <CardSkeleton />}
       {event ? <AddAssistants existingMembers={event.members} id={id} /> : <CardSkeleton />}
       {event ? <Assistants members={event.members} id={id} /> : <CardSkeleton />}
       {event ? <AddSongs existingSongs={event.songs} id={id} /> : <CardSkeleton />}
