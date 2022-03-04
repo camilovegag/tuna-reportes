@@ -227,7 +227,6 @@ const Assistants = ({ members, id }) => {
                 alt="Edit icon"
               />
               <img onClick={handleEditClick} className={styles.done} src={done} alt="Remove icon" />
-              <p>Bulto</p>
             </section>
           </>
         )}
