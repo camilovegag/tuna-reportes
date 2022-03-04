@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./Assistants.module.css";
 import edit from "../assets/edit.svg";
+import filter from "../assets/filter.svg";
+import nofilter from "../assets/nofilter.svg";
 import remove from "../assets/remove.svg";
 import close from "../assets/close.svg";
 import done from "../assets/done.svg";
@@ -49,6 +51,30 @@ const Assistants = ({ members, id }) => {
     });
   };
 
+  const handleFliterClick = () => {
+    Swal.fire({
+      title: "Filtrar asistentes",
+      input: "select",
+      inputOptions: {
+        Asiste: "Asiste",
+        "No asiste": "No asiste",
+        "Por confirmar": "Por confirmar",
+        "No responde": "No responde",
+      },
+      inputPlaceholder: "Selecciona un estado",
+      showCancelButton: true,
+      confirmButtonText: "Filtrar",
+      confirmButtonColor: "#8d69f1",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#d13267",
+      inputValidator: (value) => {
+        setEditedMembers((prevMembers) => prevMembers.filter((member) => member.state === value));
+      },
+    });
+  };
+
+  const handleDeleteFilter = () => setEditedMembers(members);
+
   const handleEditClick = () => {
     Swal.fire({
       title: "¿Deseas actualizar la lista de aistentes?",
@@ -82,7 +108,7 @@ const Assistants = ({ members, id }) => {
         {!editMode ? (
           <>
             <section className={styles.text}>
-              {members.map((member) => (
+              {editedMembers.map((member) => (
                 <div key={member.member} className={styles.assistant}>
                   <p>{member.member}</p>
                   <p className={styles.dash}>-</p>
@@ -108,6 +134,18 @@ const Assistants = ({ members, id }) => {
                 className={styles.edit}
                 src={edit}
                 alt="Edit icon"
+              />
+              <img
+                onClick={handleFliterClick}
+                className={styles.filter}
+                src={filter}
+                alt="Filter icon"
+              />
+              <img
+                onClick={handleDeleteFilter}
+                className={styles.nofilter}
+                src={nofilter}
+                alt="No filter icon"
               />
             </section>
           </>
@@ -189,6 +227,7 @@ const Assistants = ({ members, id }) => {
                 alt="Edit icon"
               />
               <img onClick={handleEditClick} className={styles.done} src={done} alt="Remove icon" />
+              <p>Bulto</p>
             </section>
           </>
         )}
