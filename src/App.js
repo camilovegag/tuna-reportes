@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Create from "./pages/Create";
 import Event from "./pages/Event/index";
+import Archive from "./pages/Archive";
 
 const App = () => {
   const { user, authIsReady } = useAuthContext();
@@ -18,6 +19,11 @@ const App = () => {
           <Layout>
             <Routes>
               <Route exact path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+              <Route
+                exact
+                path="/archive"
+                element={user ? <Archive /> : <Navigate to="/login" />}
+              />
               <Route path="/create" element={user ? <Create /> : <Navigate to="/login" />} />
               <Route path="/event/:id" element={user ? <Event /> : <Navigate to="/login" />} />
               <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />

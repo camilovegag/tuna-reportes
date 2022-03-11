@@ -14,7 +14,8 @@ const Navbar = () => {
         <nav>
           <ul>
             {user && <li onClick={() => navigate("/")}>Inicio</li>}
-            {user && <li onClick={() => navigate("/create")}>Crear evento</li>}
+            {user && <li onClick={() => navigate("/create")}>Crear</li>}
+            {user && <li onClick={() => navigate("/archive")}>Archivo</li>}
             {!user && <li onClick={() => navigate("/login")}>Iniciar sesión</li>}
             {!user && <li onClick={() => navigate("/signup")}>Crear cuenta</li>}
             {user && <li onClick={logout}>Cerrar sesión</li>}

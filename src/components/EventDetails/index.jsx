@@ -6,13 +6,15 @@ import edit from "../assets/edit.svg";
 import remove from "../assets/remove.svg";
 import close from "../assets/close.svg";
 import done from "../assets/done.svg";
+import archiveIcon from "../assets/archive.svg";
+import unarchiveIcon from "../assets/unarchive.svg";
 import styles from "./Event.module.css";
 import Swal from "sweetalert2";
 import moment from "moment";
 
 const EventDetails = ({ event }) => {
   const navigate = useNavigate();
-  const { title, location, date, id, time } = event;
+  const { title, location, date, id, time, archive } = event;
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newLocation, setNewLocation] = useState(location);
@@ -47,6 +49,50 @@ const EventDetails = ({ event }) => {
           navigate("/");
           deleteDoc(docRef);
         });
+      }
+    });
+  };
+
+  const handleArchiveClick = () => {
+    Swal.fire({
+      title: "¿Deseas archivar este evento?",
+      text: "Esta accion no puede deshacerse",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Si, archivar",
+      confirmButtonColor: "#8d69f1",
+      cancelButtonText: "No, cancelar",
+      cancelButtonColor: "#d13267",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "El evento ha sido archivado",
+          icon: "success",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#8d69f1",
+        }).then(() => updateDoc(docRef, { archive: true }));
+      }
+    });
+  };
+
+  const handleUnarchiveClick = () => {
+    Swal.fire({
+      title: "¿Deseas desarchivar este evento?",
+      text: "Esta accion no puede deshacerse",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Si, desarchivar",
+      confirmButtonColor: "#8d69f1",
+      cancelButtonText: "No, cancelar",
+      cancelButtonColor: "#d13267",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "El evento ha sido desarchivado",
+          icon: "success",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#8d69f1",
+        }).then(() => updateDoc(docRef, { archive: false }));
       }
     });
   };
@@ -108,12 +154,32 @@ const EventDetails = ({ event }) => {
               src={edit}
               alt="Edit icon"
             />
-            <img
-              onClick={() => handleDeleteClick()}
-              className={styles.remove}
-              src={remove}
-              alt="Remove icon"
-            />
+
+            {archive !== true ? (
+              <img
+                onClick={() => handleArchiveClick()}
+                className={styles.archive}
+                src={archiveIcon}
+                alt="Archive icon"
+                title="Archivar evento"
+              />
+            ) : (
+              <>
+                <img
+                  onClick={() => handleUnarchiveClick()}
+                  className={styles.archive}
+                  src={unarchiveIcon}
+                  alt="Unarchive icon"
+                  title="Desarchivar evento"
+                />
+                <img
+                  onClick={() => handleDeleteClick()}
+                  className={styles.remove}
+                  src={remove}
+                  alt="Remove icon"
+                />
+              </>
+            )}
           </section>
         </>
       ) : (
