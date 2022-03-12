@@ -8,15 +8,20 @@ import Swal from "sweetalert2";
 
 const Create = () => {
   const [title, setTitle] = useState("");
+  const [status, setStatus] = useState("");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const colRef = collection(db, "events");
     await addDoc(colRef, {
+      archive: false,
       title,
+      status,
       location,
       date: moment(date).format("dddd LL, LT A"),
       time: date,
@@ -34,8 +39,10 @@ const Create = () => {
       .catch((err) => setError(err));
 
     setTitle("");
+    setStatus("");
     setLocation("");
     setDate("");
+    setIsSubmitting(false);
   };
   return (
     <section className={styles.create}>
@@ -52,6 +59,14 @@ const Create = () => {
           value={title}
           required
         />
+        <label className={styles.label} htmlFor="status">
+          Estado
+        </label>
+        <select name="status" onChange={(e) => setStatus(e.target.value)}>
+          <option value="">Elegir estado</option>
+          <option value="Confirmada">Confirmada</option>
+          <option value="Por confirmar">Por confirmar</option>
+        </select>
         <label className={styles.label} htmlFor="location">
           Ubicación
         </label>
@@ -75,7 +90,9 @@ const Create = () => {
           required
         />
         <p className={styles.helper}>Formato: mm/dd/yyyy, hora</p>
-        <button className="btn">Crear evento</button>
+        <button disabled={isSubmitting} className="btn">
+          Crear evento
+        </button>
         {error && <p className="error">{error.message}</p>}
       </form>
     </section>

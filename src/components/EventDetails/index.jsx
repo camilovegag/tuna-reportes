@@ -14,17 +14,19 @@ import moment from "moment";
 
 const EventDetails = ({ event }) => {
   const navigate = useNavigate();
-  const { title, location, date, id, time, archive } = event;
+  const { title, location, date, id, time, archive, status } = event;
   const [editMode, setEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
+  const [newStatus, setNewStatus] = useState(status);
   const [newLocation, setNewLocation] = useState(location);
   const [newDate, setNewDate] = useState(time);
 
   useEffect(() => {
     setNewTitle(title);
+    setNewStatus(status);
     setNewLocation(location);
     setNewDate(time);
-  }, [title, location, time]);
+  }, [title, status, location, time]);
 
   const docRef = doc(db, "events", id);
 
@@ -100,6 +102,7 @@ const EventDetails = ({ event }) => {
   const handleEditClick = () => {
     const newEvent = {
       title: newTitle,
+      status: newStatus,
       location: newLocation,
       date: moment(newDate).format("LL, LT A"),
       time: newDate,
@@ -123,6 +126,7 @@ const EventDetails = ({ event }) => {
         }).then(() => {
           updateDoc(docRef, newEvent);
           setNewTitle(title);
+          setNewStatus(status);
           setNewLocation(location);
           setNewDate(date);
           setEditMode(false);
@@ -138,13 +142,31 @@ const EventDetails = ({ event }) => {
           <section className={styles.text}>
             <h3 className={styles.title}>{title}</h3>
             <p>
+              <span className={styles.subtitle}>Estado:</span>{" "}
+              <span
+                className={
+                  status === "Confirmada"
+                    ? styles.confirmed
+                    : status === "Cancelada"
+                    ? styles.canceled
+                    : status === "Por confirmar"
+                    ? styles.pending
+                    : styles.ended
+                }
+              >
+                {status}
+              </span>
+            </p>
+            <p>
               <span className={styles.subtitle}>Ubicación:</span> {location}
             </p>
             <p>
-              <span className={styles.subtitle}>Fecha:</span> {date.slice(0, -10)}
+              <span className={styles.subtitle}>Fecha:</span>{" "}
+              {date.slice(0, -10)}
             </p>
             <p>
-              <span className={styles.subtitle}>Hora:</span> {date.substr(date.length - 8)}
+              <span className={styles.subtitle}>Hora:</span>{" "}
+              {date.substr(date.length - 8)}
             </p>
           </section>
           <section className={styles.icons}>
@@ -194,11 +216,26 @@ const EventDetails = ({ event }) => {
               />
             </div>
             <div className={styles.side}>
+              <p className={styles.subtitle}>Estado:</p>
+              <select
+                name="status"
+                value={newStatus}
+                onChange={(e) => setNewStatus(e.target.value)}
+              >
+                <option value="Confirmada">Confirmada</option>
+                <option value="Por confirmar">Por confirmar</option>
+                <option value="Cancelada">Cancelada</option>
+                <option value="Realizada">Realizada</option>
+              </select>
+            </div>
+            <div className={styles.side}>
               <p className={styles.subtitle}>Ubicación:</p>
               <input
                 type="text"
                 value={newLocation}
-                onChange={(newLocation) => setNewLocation(newLocation.target.value)}
+                onChange={(newLocation) =>
+                  setNewLocation(newLocation.target.value)
+                }
               />
             </div>
             <div className={styles.side}>

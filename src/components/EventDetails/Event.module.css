@@ -14,7 +14,8 @@
   flex-direction: column;
   gap: 1rem;
 }
-.side input {
+.side input,
+.side select {
   width: 100%;
 }
 
@@ -30,6 +31,19 @@
   color: var(--heading-color);
 }
 
+.confirmed {
+  color: #91c483;
+}
+.canceled {
+  color: #f1817f;
+}
+.pending {
+  color: #ffbe36;
+}
+.ended {
+  color: #8d69f1;
+}
+
 .icons {
   display: flex;
   flex-direction: column;
@@ -37,28 +51,34 @@
 }
 .icons img {
   cursor: pointer;
-  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%) contrast(84%);
+  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%)
+    contrast(84%);
 }
 
 .edit:hover {
-  filter: invert(88%) sepia(8%) saturate(7210%) hue-rotate(328deg) brightness(105%) contrast(109%);
+  filter: invert(88%) sepia(8%) saturate(7210%) hue-rotate(328deg)
+    brightness(105%) contrast(109%);
 }
 
 .done:hover {
-  filter: invert(47%) sepia(68%) saturate(3350%) hue-rotate(230deg) brightness(98%) contrast(93%);
+  filter: invert(47%) sepia(68%) saturate(3350%) hue-rotate(230deg)
+    brightness(98%) contrast(93%);
 }
 
 .archive:hover {
-  filter: invert(43%) sepia(42%) saturate(1743%) hue-rotate(225deg) brightness(97%) contrast(94%);
+  filter: invert(43%) sepia(42%) saturate(1743%) hue-rotate(225deg)
+    brightness(97%) contrast(94%);
 }
 
 .remove:hover,
 .close:hover {
-  filter: invert(65%) sepia(65%) saturate(1672%) hue-rotate(311deg) brightness(105%) contrast(89%);
+  filter: invert(65%) sepia(65%) saturate(1672%) hue-rotate(311deg)
+    brightness(105%) contrast(89%);
 }
 
 @media (min-width: 600px) {
-  .side input {
+  .side input,
+  .side select {
     width: 70%;
   }
 }

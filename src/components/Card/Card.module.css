@@ -21,3 +21,16 @@
   font-weight: 500;
   color: var(--heading-color);
 }
+
+.confirmed {
+  color: #91c483;
+}
+.canceled {
+  color: #f1817f;
+}
+.pending {
+  color: #ffbe36;
+}
+.ended {
+  color: #8d69f1;
+}
