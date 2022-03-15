@@ -55,6 +55,7 @@
   .delete {
     display: flex;
     gap: 0.75rem;
+    flex-wrap: wrap;
   }
 }
 
@@ -67,29 +68,35 @@
 
 .icons img {
   cursor: pointer;
-  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%) contrast(84%);
+  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%)
+    contrast(84%);
 }
 
 .edit:hover {
-  filter: invert(88%) sepia(8%) saturate(7210%) hue-rotate(328deg) brightness(105%) contrast(109%);
+  filter: invert(88%) sepia(8%) saturate(7210%) hue-rotate(328deg)
+    brightness(105%) contrast(109%);
 }
 
 .done:hover {
-  filter: invert(47%) sepia(68%) saturate(3350%) hue-rotate(230deg) brightness(98%) contrast(93%);
+  filter: invert(47%) sepia(68%) saturate(3350%) hue-rotate(230deg)
+    brightness(98%) contrast(93%);
 }
 
 .remove {
-  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%) contrast(84%);
+  filter: invert(24%) sepia(1%) saturate(0%) hue-rotate(271deg) brightness(94%)
+    contrast(84%);
 }
 
 .filter:hover {
-  filter: invert(69%) sepia(12%) saturate(4310%) hue-rotate(170deg) brightness(101%) contrast(101%);
+  filter: invert(69%) sepia(12%) saturate(4310%) hue-rotate(170deg)
+    brightness(101%) contrast(101%);
 }
 
 .remove:hover,
 .close:hover,
 .nofilter:hover {
-  filter: invert(65%) sepia(65%) saturate(1672%) hue-rotate(311deg) brightness(105%) contrast(89%);
+  filter: invert(65%) sepia(65%) saturate(1672%) hue-rotate(311deg)
+    brightness(105%) contrast(89%);
 }
 
 .attend {

@@ -104,7 +104,7 @@ const EventDetails = ({ event }) => {
       title: newTitle,
       status: newStatus,
       location: newLocation,
-      date: moment(newDate).format("LL, LT A"),
+      date: moment(newDate).format("dddd LL, LT A"),
       time: newDate,
     };
     Swal.fire({
@@ -162,7 +162,7 @@ const EventDetails = ({ event }) => {
             </p>
             <p>
               <span className={styles.subtitle}>Fecha:</span>{" "}
-              {date.slice(0, -10)}
+              {` ${date[0].toUpperCase() + date.substring(1).slice(0, -10)}.`}
             </p>
             <p>
               <span className={styles.subtitle}>Hora:</span>{" "}
